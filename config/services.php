@@ -30,7 +30,7 @@ return [
     ],
 
     'stripe' => [
-        'model' => WebSisMap\User::class,
+        'model' => \WebSisMap\Models\User::class,
         'key' => env('STRIPE_KEY'),
         'secret' => env('STRIPE_SECRET'),
     ],
