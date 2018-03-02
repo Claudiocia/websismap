@@ -1,0 +1,21 @@
+<?php
+
+use Illuminate\Database\Seeder;
+
+class UsersTableSeederCliente extends Seeder
+{
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
+    public function run()
+    {
+        factory(\WebSisMap\Models\User::class, 10)
+            ->states('cliente')
+            ->create();
+        factory(\WebSisMap\Models\User::class, 10)
+            ->states('operador')
+            ->create();
+    }
+}

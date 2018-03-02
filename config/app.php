@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => env('APP_NAME', 'WebSisMap'),
 
     /*
     |--------------------------------------------------------------------------
@@ -78,7 +78,7 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => 'pt-BR',
 
     /*
     |--------------------------------------------------------------------------
@@ -150,6 +150,8 @@ return [
         /*
          * Package Service Providers...
          */
+        Bootstrapper\BootstrapperL5ServiceProvider::class,
+        Kris\LaravelFormBuilder\FormBuilderServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -208,6 +210,12 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+        'Alert' => Bootstrapper\Facades\Alert::class,
+        'DropdownButton' => Bootstrapper\Facades\DropdownButton::class,
+        'Icon' => Bootstrapper\Facades\Icon::class,
+        'Image' => Bootstrapper\Facades\Image::class,
+        'Table' => Bootstrapper\Facades\Table::class,
+        'FormBuilder' => Kris\LaravelFormBuilder\FormBuilderServiceProvider::class,
 
     ],
 

@@ -3,6 +3,8 @@
 namespace WebSisMap\Http;
 
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
+use WebSisMap\Console\Commands\IdeHelperHandler;
+use WebSisMap\Http\Middleware\CheckRole;
 
 class Kernel extends HttpKernel
 {
@@ -58,5 +60,10 @@ class Kernel extends HttpKernel
         'can' => \Illuminate\Auth\Middleware\Authorize::class,
         'guest' => \WebSisMap\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+        'auth.checkrole' => \WebSisMap\Http\Middleware\CheckRole::class,
+    ];
+
+    protected $commands = [
+        IdeHelperHandler::class,
     ];
 }
