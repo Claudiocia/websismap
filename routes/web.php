@@ -42,6 +42,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin\\'], 
         Route::resource('empres', 'EmpresController');
         Route::resource('predios', 'PrediosController');
         Route::resource('setors', 'SetorsController');
+        Route::resource('unidades', 'UnidadesController');
     });
 });
 

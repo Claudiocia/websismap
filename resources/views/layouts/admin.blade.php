@@ -39,7 +39,7 @@
                                 <a class="nav-link" href="{{ route('admin.empres.index') }}">Empresa</a>
                                 <a class="nav-link" href="{{ route('admin.predios.index') }}">Prédios</a>
                                 <a class="nav-link" href="{{ route('admin.setors.index') }}">Setores</a>
-                                <a class="nav-link" href="{{ '#' }}">Unidades</a>
+                                <a class="nav-link" href="{{ route('admin.unidades.index') }}">Unidades</a>
 
                             </div>
                         </li>
