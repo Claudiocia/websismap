@@ -21,7 +21,7 @@ class User extends Authenticatable implements TableInterface
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'role',
+        'name', 'email', 'password', 'role', 'setor',
     ];
 
     /**
@@ -56,7 +56,7 @@ class User extends Authenticatable implements TableInterface
      */
     public function getTableHeaders()
     {
-        return['#', 'Nome', 'Email'];
+        return['#', 'Nome', 'Email', 'Nivel'];
     }
 
     /**
@@ -75,6 +75,13 @@ class User extends Authenticatable implements TableInterface
                 return $this->name;
             case 'Email':
                 return $this->email;
+            case'Nivel':
+                return $this->role;
         }
+    }
+
+    public function scopeOfRole($query, $role)
+    {
+        return $query->select('id', 'name')->where('role', '=', $role);
     }
 }

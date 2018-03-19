@@ -8,9 +8,20 @@ use WebSisMap\Forms\UserForm;
 use WebSisMap\Models\User;
 use Illuminate\Http\Request;
 use WebSisMap\Http\Controllers\Controller;
+use WebSisMap\Repositories\UserRepository;
 
 class UsersController extends Controller
 {
+    private $repository;
+
+    /**
+     * UsersController constructor.
+     */
+    public function __construct(UserRepository $repository)
+    {
+        $this->repository = $repository;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -18,7 +29,7 @@ class UsersController extends Controller
      */
     public function index()
     {
-        $users = User::paginate();
+        $users = $this->repository->paginate();
         return view('admin.users.index', compact('users'));
     }
 
@@ -49,12 +60,13 @@ class UsersController extends Controller
         $form = FormBuilder::create(UserForm::class);
 
         if (!$form->isValid()){
-            //redirecionar para a página de criação de usuários
+            return redirect()
+                ->back()
+                ->withErrors($form->getErrors())
+                ->withInput();
         }
         $data = $form->getFieldValues();
-        $data['role'] = User::ROLE_ADMIN;
-        $data['password'] = User::generatePassword();
-        User::create($data);
+        $this->repository->create($data);
         $request->session()->flash('message', 'Usuário criado com sucesso.');
         return redirect()->route('admin.users.index');
     }
@@ -67,7 +79,7 @@ class UsersController extends Controller
      */
     public function show(User $user)
     {
-        //
+        return view('admin.users.show', compact('user'));
     }
 
     /**
@@ -78,7 +90,13 @@ class UsersController extends Controller
      */
     public function edit(User $user)
     {
-        //
+        $form = FormBuilder::create(UserForm::class,[
+            'url' => route('admin.users.update', ['user' => $user->id]),
+            'method' => 'PUT',
+            'model' => $user
+        ]);
+
+        return view('admin.users.edit', compact('form'));
     }
 
     /**
@@ -88,9 +106,32 @@ class UsersController extends Controller
      * @param  \WebSisMap\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request, $id)
     {
-        //
+        /** @var Form $form */
+        $form = FormBuilder::create(UserForm::class, [
+            'data' => ['id' => $id]
+        ]);
+
+        if (!$form->isValid()){
+            return redirect()
+                ->back()
+                ->withErrors($form->getErrors())
+                ->withInput();
+        }
+
+        $idAdmin = \Auth::user()->id;
+        if ($idAdmin == $id){
+            $data = array_except($form->getFieldValues(), ['password', 'role']);
+            $this->repository->update($data, $id);
+        }
+        else{
+            $data = array_except($form->getFieldValues(), ['password']);
+            $this->repository->update($data, $id);
+        }
+
+        $request->session()->flash('message', 'Usuário alterado com sucesso.');
+        return redirect()->route('admin.users.index');
     }
 
     /**
@@ -99,8 +140,10 @@ class UsersController extends Controller
      * @param  \WebSisMap\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user)
+    public function destroy(Request $request, $id)
     {
-        //
+        $this->repository->delete($id);
+        $request->session()->flash('message', 'Usuário excluido com sucesso.');
+        return redirect()->route('admin.users.index');
     }
 }

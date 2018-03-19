@@ -13,9 +13,15 @@ class UsersTableSeederCliente extends Seeder
     {
         factory(\WebSisMap\Models\User::class, 10)
             ->states('cliente')
-            ->create();
+            ->create()->each(function ($user){
+                $user->verified = true;
+                $user->save();
+            });
         factory(\WebSisMap\Models\User::class, 10)
             ->states('operador')
-            ->create();
+            ->create()->each(function ($user){
+                $user->verified = true;
+                $user->save();
+            });
     }
 }

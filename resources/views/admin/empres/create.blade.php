@@ -3,13 +3,13 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <h4>Novo usuário</h4>
+            <h4>Cadastrar Empresa</h4>
         </div>
-        <div class="row">
+        <div class="form-control">
             {!!
-                form($form->add('salvar', 'submit', [
+                form($formCad->add('salvar', 'submit', [
                     'attr' => ['class' => 'btn btn-primary btn-block'],
-                    'label' => '<i class="fas fa-save"></i>'
+                    'label' => '<i class="fas fa-save"></i> Salvar'
                 ]))
             !!}
         </div>

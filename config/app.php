@@ -152,6 +152,8 @@ return [
          */
         Bootstrapper\BootstrapperL5ServiceProvider::class,
         Kris\LaravelFormBuilder\FormBuilderServiceProvider::class,
+        Prettus\Repository\Providers\RepositoryServiceProvider::class,
+        Jrean\UserVerification\UserVerificationServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -161,6 +163,7 @@ return [
         // WebSisMap\Providers\BroadcastServiceProvider::class,
         WebSisMap\Providers\EventServiceProvider::class,
         WebSisMap\Providers\RouteServiceProvider::class,
+        WebSisMap\Providers\RepositoryServiceProvider::class,
 
     ],
 
@@ -212,10 +215,13 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Alert' => Bootstrapper\Facades\Alert::class,
         'DropdownButton' => Bootstrapper\Facades\DropdownButton::class,
+        'Button' => Bootstrapper\Facades\Button::class,
         'Icon' => Bootstrapper\Facades\Icon::class,
         'Image' => Bootstrapper\Facades\Image::class,
         'Table' => Bootstrapper\Facades\Table::class,
         'FormBuilder' => Kris\LaravelFormBuilder\FormBuilderServiceProvider::class,
+        'UserVerification' => Jrean\UserVerification\Facades\UserVerification::class,
+        'MediaObject' => Bootstrapper\Facades\MediaObject::class,
 
     ],
 
