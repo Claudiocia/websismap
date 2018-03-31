@@ -34,10 +34,6 @@
                     <th scope="row">Nome</th>
                     <td>{{ $setor->nome }}</td>
                 </tr>
-                <tr>
-                    <th scope="row">Responsável</th>
-                    <td>{{ $setor->user->name }}</td>
-                </tr>
                 </tbody>
             </table>
         </div>

@@ -33,3 +33,37 @@ $factory->state(\WebSisMap\Models\User::class, 'operador', function (Faker $fake
         'role' => \WebSisMap\Models\User::ROLE_OPERADOR,
     ];
 });
+
+$factory->define(\WebSisMap\Models\Empre::class, function (Faker $faker){
+    return[
+        'nome' => $faker->company,
+        'fantasia' => $faker->company,
+        'cnpj' => $faker->numerify('##.###.###/0001-##'),
+        'email' => $faker->email,
+        'tel' => $faker->phoneNumber,
+        'site' => $faker->domainName,
+        'end' => $faker->streetName,
+        'num' => $faker->numerify('###'),
+        'bairro' => $faker->domainWord,
+        'cep' => $faker->postcode,
+        'cidade' => $faker->city,
+        'uf' => $faker->citySuffix,
+        'und_princ' => 'Campus',
+        'und_sub1' => 'Departamento',
+        'und_sub2' => 'Predio',
+        'und_sub3' => 'Sala'
+    ];
+});
+
+$factory->define(\WebSisMap\Models\Predio::class, function (Faker $faker){
+    return [
+        'nome' => $faker->unique->word,
+        'localiz' => $faker->address,
+        'empre_id' => 1
+    ];
+});
+$factory->define(\WebSisMap\Models\Setor::class, function (Faker $faker){
+    return [
+        'nome' => $faker->unique()->words(2, true),
+    ];
+});

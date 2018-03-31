@@ -3,6 +3,7 @@
 namespace WebSisMap\Forms;
 
 use Kris\LaravelFormBuilder\Form;
+use WebSisMap\Models\Setor;
 
 class UserForm extends Form
 {
@@ -15,6 +16,12 @@ class UserForm extends Form
                 'label' => 'Função',
                 'choices' => [$list],
                 'rules' => 'required'
+            ])
+            ->add('setor_id', 'entity', [
+                'class' => Setor::class,
+                'property' => 'nome',
+                'label' => 'Setor',
+                'empty_value' => 'Selecione...'
             ])
             ->add('name', 'text',[
                 'label' => 'Nome',

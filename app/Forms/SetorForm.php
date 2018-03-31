@@ -19,11 +19,6 @@ class SetorForm extends Form
                 'property' => 'nome',
                 'label' => 'Localização',
                 'rules' => 'required|exists:predios,id'
-            ])
-            ->add('user_id', 'select', [
-                'choices' => [User::where('role', '=', '3')->pluck('name', 'id')->toArray()],
-                'label' => 'Responsável',
-                'rules' => 'required|exists:users,id'
             ]);
     }
 

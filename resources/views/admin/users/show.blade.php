@@ -7,8 +7,8 @@
         </div>
         <br/>
         <div class="row">
-            {!! Button::PRIMARY('<i class="fas fa-pencil-alt"></i>')->asLinkTo(route('admin.users.edit', ['user' => $user->id])) !!}
-            {!! Button::DANGER('<i class="fas fa-times"></i>')
+            {!! Button::PRIMARY('<i class="fas fa-pencil-alt"></i> Editar')->asLinkTo(route('admin.users.edit', ['user' => $user->id])) !!}
+            {!! Button::DANGER('<i class="fas fa-times"></i> Excluir')
                         ->asLinkTo(route('admin.users.destroy', ['user' => $user->id]))
                         ->addAttributes(['onclick' => "event.preventDefault();document.getElementById(\"form-delete\").submit();"])
             !!}
@@ -33,6 +33,10 @@
                 <tr>
                     <th scope="row">Nome</th>
                     <td>{{ $user->name }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Setor</th>
+                    <td>@if (!isset($user->setor->nome))  {{ 'Não Designado' }} @else {{ $user->setor->nome }} @endif</td>
                 </tr>
                 <tr>
                     <th scope="row">Email</th>

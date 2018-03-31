@@ -23,7 +23,7 @@ class Setor extends Model implements Transformable, TableInterface
      */
     protected $fillable =
         [
-            'nome', 'predio_id', 'user_id'
+            'nome',
         ];
 
     /**
@@ -33,7 +33,7 @@ class Setor extends Model implements Transformable, TableInterface
      */
     public function getTableHeaders()
     {
-        return ['Id', 'Nome', 'Localização', 'Responsavel' ];
+        return ['Id', 'Nome', 'Localização' ];
     }
 
     /**
@@ -53,19 +53,13 @@ class Setor extends Model implements Transformable, TableInterface
                 return $this->nome;
             case 'Localização':
                 return $this->predio->nome;
-            case 'Responsavel':
-                return $this->user->name;
         }
     }
 
     public function predio()
     {
-        return $this->belongsTo(Predio::class);
+        return $this->belongsTo(Predio::class, 'predio_id', 'id', 'predios');
     }
 
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
 
 }

@@ -8,7 +8,7 @@
         <div class="row">
             {!! Button::PRIMARY('Novo usuário')->asLinkTo(route('admin.users.create')) !!}
         </div>
-        <div class="row">
+        <div class="row" >
             <h4> </h4>
         </div>
         <div class="row">
