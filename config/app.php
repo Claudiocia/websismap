@@ -222,6 +222,8 @@ return [
         'FormBuilder' => Kris\LaravelFormBuilder\FormBuilderServiceProvider::class,
         'UserVerification' => Jrean\UserVerification\Facades\UserVerification::class,
         'MediaObject' => Bootstrapper\Facades\MediaObject::class,
+        'Navigation' => Bootstrapper\Facades\Navigation::class,
+        'Tabbable' => Bootstrapper\Facades\Tabbable::class,
 
     ],
 

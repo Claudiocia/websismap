@@ -19,13 +19,6 @@ class UnidadeForm extends Form
                 'empty_value' => 'Selecione...',
                 'rules' => 'required|exists:setors,id'
             ])
-            ->add('predio_id', 'entity', [
-                'class' => Predio::class,
-                'property' => 'nome',
-                'label' => 'Predio',
-                'empty_value' => 'Selecione...',
-                'rules' => 'required|exists:predios,id'
-            ])
             ->add('tipo', 'text')
             ->add('localiz', 'text')
             ->add('foto', 'text');

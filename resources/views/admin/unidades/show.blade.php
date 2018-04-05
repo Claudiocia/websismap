@@ -35,10 +35,6 @@
                     <td>{{ $unidade->nome }}</td>
                 </tr>
                 <tr>
-                    <th scope="row">Predio</th>
-                    <td>{{ $unidade->predio->nome }}</td>
-                </tr>
-                <tr>
                     <th scope="row">Setor</th>
                     <td>{{ $unidade->setor->nome }}</td>
                 </tr>

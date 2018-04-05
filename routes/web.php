@@ -42,6 +42,10 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin\\'], 
         Route::resource('empres', 'EmpresController');
         Route::resource('predios', 'PrediosController');
         Route::resource('setors', 'SetorsController');
+        Route::group(['prefix' => 'unids', 'as' => 'unids.'], function (){
+            Route::name('relacoes.create')->get('{unidade}/relacoes', 'UnidadeRelacoesController@create');
+            Route::name('relacoes.store')->post('{unidade}/relacoes', 'UnidadeRelacoesController@store');
+        });
         Route::resource('unidades', 'UnidadesController');
     });
 });

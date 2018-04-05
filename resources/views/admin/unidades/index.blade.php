@@ -18,13 +18,15 @@
                 'image' => '//placehold.it/64x64',
                 'link' => '#',
                 'heading' => $unidade->nome,
-                'body' => ' Setor: '.$unidade->setor->nome.' - Prédio: '.$unidade->predio->nome.'<br/>Localização: '.$unidade->localiz
+                'body' => ' Setor: '.$unidade->setor->nome.'<br/>Localização: '.$unidade->localiz
                 ]);
                 })
                 ->callback('Ações', function ($field, $unidade){
                     $linkEdit = route("admin.unidades.edit", ['unidade' => $unidade->id]);
                     $linkShow = route('admin.unidades.show', ['unidade' => $unidade->id]);
+                    $linkUser = route('admin.unids.relacoes.create', ['unidade' => $unidade->id]);
                     return Button::LINK('<i class="fas fa-pencil-alt"></i>' )->asLinkTo($linkEdit).'|'.
+                           Button::LINK('<i class="fas fa-user"></i>' )->asLinkTo($linkUser).'|'.
                            Button::LINK('<i class="fas fa-times"></i>')->asLinkTo($linkShow);
                 })
             !!}

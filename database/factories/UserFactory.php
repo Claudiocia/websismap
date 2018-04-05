@@ -67,3 +67,11 @@ $factory->define(\WebSisMap\Models\Setor::class, function (Faker $faker){
         'nome' => $faker->unique()->words(2, true),
     ];
 });
+$factory->define(\WebSisMap\Models\Unidade::class, function (Faker $faker){
+    return[
+        'nome' => $faker->words(2),
+        'tipo' => $faker->word,
+        'localiz' => $faker->address,
+        'foto' => 'sala.jpg',
+    ];
+});

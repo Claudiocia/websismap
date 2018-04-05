@@ -23,7 +23,7 @@ class Unidade extends Model implements Transformable, TableInterface
      */
     protected $fillable =
         [
-            'nome', 'setor_id', 'predio_id', 'tipo', 'localiz', 'foto'
+            'nome', 'tipo', 'localiz', 'foto', 'setor_id'
         ];
 
     /**
@@ -53,13 +53,14 @@ class Unidade extends Model implements Transformable, TableInterface
         }
     }
 
-    public function predio()
-    {
-        return $this->belongsTo(Predio::class);
-    }
-
     public function setor()
     {
-        return $this->belongsTo(Setor::class);
+        return $this->belongsTo(Setor::class, 'setor_id', 'id');
+    }
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class);
+
     }
 }
