@@ -2,12 +2,28 @@
 
 namespace WebSisMap\Http\Controllers\Admin;
 
+use WebSisMap\Forms\UnidadeRelacaoForm;
 use WebSisMap\Models\Unidade;
 use Illuminate\Http\Request;
 use WebSisMap\Http\Controllers\Controller;
+use WebSisMap\Repositories\UnidadeRepository;
 
 class UnidadeRelacoesController extends Controller
 {
+    /**
+     * @var UnidadeRepository
+     */
+    private $repository;
+
+    /**
+     * UnidadeRelacoesController constructor.
+     */
+    public function __construct(UnidadeRepository $repository)
+    {
+        $this->repository = $repository;
+    }
+
+
     /**
      * Display a listing of the resource.
      *
@@ -23,9 +39,15 @@ class UnidadeRelacoesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Unidade $unidade)
     {
-        //
+        $form = \FormBuilder::create(UnidadeRelacaoForm::class, [
+            'url' => route('admin.unids.relacoes.store', ['unidade' => $unidade->id]),
+            'method' => 'POST',
+            'model' => $unidade
+        ]);
+
+        return view('admin.unidades.relacoes-create', compact('form', 'unidade'));
     }
 
     /**
@@ -34,9 +56,21 @@ class UnidadeRelacoesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $id)
     {
-        //
+        $form = \FormBuilder::create(UnidadeRelacaoForm::class);
+
+        if (!$form->isValid()){
+            return redirect()
+                ->back()
+                ->withErrors($form->getErrors())
+                ->withInput();
+        }
+
+        $data = $form->getFieldValues();
+        $this->repository->update($data, $id);
+        $request->session()->flash('message', 'Dados dos responsaveis registrados com sucesso.');
+        return redirect()->back();
     }
 
     /**

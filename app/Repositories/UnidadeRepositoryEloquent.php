@@ -15,6 +15,15 @@ use WebSisMap\Validators\UnidadeValidator;
  */
 class UnidadeRepositoryEloquent extends BaseRepository implements UnidadeRepository
 {
+    public function update(array $attributes, $id)
+    {
+        $model = parent::update($attributes, $id);
+        if (isset($attributes['users'])){
+            $model->users()->sync($attributes['users']);
+        }
+        return $model;
+    }
+
     /**
      * Specify Model class name
      *
