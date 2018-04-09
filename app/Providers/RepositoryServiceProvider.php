@@ -5,6 +5,8 @@ namespace WebSisMap\Providers;
 use Illuminate\Support\ServiceProvider;
 use WebSisMap\Repositories\EmpreRepository;
 use WebSisMap\Repositories\EmpreRepositoryEloquent;
+use WebSisMap\Repositories\MaterialRepository;
+use WebSisMap\Repositories\MaterialRepositoryEloquent;
 use WebSisMap\Repositories\PredioRepository;
 use WebSisMap\Repositories\PredioRepositoryEloquent;
 use WebSisMap\Repositories\SetorRepository;
@@ -40,6 +42,7 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(PredioRepository::class, PredioRepositoryEloquent::class);
         $this->app->bind(SetorRepository::class, SetorRepositoryEloquent::class);
         $this->app->bind(UnidadeRepository::class, UnidadeRepositoryEloquent::class);
+        $this->app->bind(MaterialRepository::class, MaterialRepositoryEloquent::class);
         //:end-bindings:
     }
 }

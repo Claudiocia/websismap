@@ -21,6 +21,9 @@ class UnidadeRepositoryEloquent extends BaseRepository implements UnidadeReposit
         if (isset($attributes['users'])){
             $model->users()->sync($attributes['users']);
         }
+        if (isset($attributes['materials'])){
+            $model->materials()->sync($attributes['materials']);
+        }
         return $model;
     }
 

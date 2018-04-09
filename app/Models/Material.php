@@ -8,11 +8,11 @@ use Prettus\Repository\Contracts\Transformable;
 use Prettus\Repository\Traits\TransformableTrait;
 
 /**
- * Class Unidade.
+ * Class Material.
  *
  * @package namespace WebSisMap\Models;
  */
-class Unidade extends Model implements Transformable, TableInterface
+class Material extends Model implements Transformable, TableInterface
 {
     use TransformableTrait;
 
@@ -21,10 +21,9 @@ class Unidade extends Model implements Transformable, TableInterface
      *
      * @var array
      */
-    protected $fillable =
-        [
-            'nome', 'tipo', 'localiz', 'foto', 'setor_id'
-        ];
+    protected $fillable = [
+        'nome', 'tipo', 'descricao', 'observacao'
+    ];
 
     /**
      * A list of headers to be used when a table is displayed
@@ -33,7 +32,7 @@ class Unidade extends Model implements Transformable, TableInterface
      */
     public function getTableHeaders()
     {
-        return ['Id', 'Tipo'];
+        return ['Id', 'Nome', 'Tipo', 'Descrição', 'Obs.:'];
     }
 
     /**
@@ -48,24 +47,14 @@ class Unidade extends Model implements Transformable, TableInterface
         switch ($header){
             case 'Id':
                 return $this->id;
+            case 'Nome':
+                return $this->nome;
             case 'Tipo':
                 return $this->tipo;
+            case 'Descrição':
+                return $this->descricao;
+            case 'Obs.:':
+                return $this->observacao;
         }
-    }
-
-    public function setor()
-    {
-        return $this->belongsTo(Setor::class, 'setor_id', 'id');
-    }
-
-    public function users()
-    {
-        return $this->belongsToMany(User::class);
-
-    }
-
-    public function materials()
-    {
-        return $this->belongsToMany(Material::class);
     }
 }

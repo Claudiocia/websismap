@@ -75,3 +75,12 @@ $factory->define(\WebSisMap\Models\Unidade::class, function (Faker $faker){
         'foto' => 'sala.jpg',
     ];
 });
+$factory->define(\WebSisMap\Models\Material::class, function (Faker $faker){
+    return[
+        'nome' => $faker->word,
+        'tipo' => $faker->word,
+        'descricao' => $faker->sentence(6),
+        'observacao' => $faker->sentence(3)
+    ];
+
+});

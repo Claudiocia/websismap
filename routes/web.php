@@ -47,6 +47,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin\\'], 
             Route::name('relacoes.store')->post('{unidade}/relacoes', 'UnidadeRelacoesController@store');
         });
         Route::resource('unidades', 'UnidadesController');
+        Route::resource('materials', 'MaterialsController');
     });
 });
 
