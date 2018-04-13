@@ -10,6 +10,9 @@ class UnidadeForm extends Form
 {
     public function buildForm()
     {
+        $id = $this->getData('id');
+        $rulesThumb = 'image|max:1024';
+        //$rulesThumb = !$id ? "required|$rulesThumb" : $rulesThumb;
         $this
             ->add('nome', 'text')
             ->add('setor_id', 'entity', [
@@ -21,6 +24,9 @@ class UnidadeForm extends Form
             ])
             ->add('tipo', 'text')
             ->add('localiz', 'text')
-            ->add('foto', 'text');
+            ->add('foto', 'file',[
+                'required' => !$id ? true : false,
+                'rules' => $rulesThumb
+            ]);
     }
 }

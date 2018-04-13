@@ -6,6 +6,7 @@ use Bootstrapper\Interfaces\TableInterface;
 use Illuminate\Database\Eloquent\Model;
 use Prettus\Repository\Contracts\Transformable;
 use Prettus\Repository\Traits\TransformableTrait;
+use WebSisMap\Media\UnidadePaths;
 
 /**
  * Class Unidade.
@@ -15,6 +16,7 @@ use Prettus\Repository\Traits\TransformableTrait;
 class Unidade extends Model implements Transformable, TableInterface
 {
     use TransformableTrait;
+    use UnidadePaths;
 
     /**
      * The attributes that are mass assignable.
@@ -33,7 +35,7 @@ class Unidade extends Model implements Transformable, TableInterface
      */
     public function getTableHeaders()
     {
-        return ['Id', 'Tipo'];
+        return ['Id', 'Tipo', 'Setor'];
     }
 
     /**
@@ -50,6 +52,12 @@ class Unidade extends Model implements Transformable, TableInterface
                 return $this->id;
             case 'Tipo':
                 return $this->tipo;
+            case 'Setor':
+                if (!isset($this->setor->nome)){
+                    return 'Não Designado';
+                }else {
+                    return $this->setor->nome;
+                }
         }
     }
 

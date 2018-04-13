@@ -2,6 +2,7 @@
 
 namespace WebSisMap\Http\Controllers\Admin;
 
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 
 use Kris\LaravelFormBuilder\Facades\FormBuilder;
@@ -89,6 +90,7 @@ class UnidadesController extends Controller
                 ->withInput();
         }
         $data = $form->getFieldValues();
+        Model::unguard();
         $this->repository->create($data);
         $request->session()->flash('message', 'Nova Unidade criada com sucesso');
         return redirect()->route('admin.unidades.index');
@@ -118,7 +120,8 @@ class UnidadesController extends Controller
         $form = FormBuilder::create(UnidadeForm::class, [
             'url' => route('admin.unidades.update', [ 'unidade' => $unidade]),
             'method' => 'PUT',
-            'model' => $unidade
+            'model' => $unidade,
+            'data' => ['id' => $unidade->id],
         ]);
         return view('admin.unidades.edit', compact('form'));
     }
@@ -163,5 +166,15 @@ class UnidadesController extends Controller
         $this->repository->delete($id);
         $request->session()->flash('message', 'Unidade excluida com sucesso');
         return redirect()->route('admin.unidades.index');
+    }
+
+    public function thumbAsset(Unidade $unidade)
+    {
+        return response()->download($unidade->thumb_path);
+    }
+
+    public function thumbSmallAsset(Unidade $unidade)
+    {
+        return response()->download($unidade->thumb_small_path);
     }
 }

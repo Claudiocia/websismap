@@ -69,17 +69,17 @@ $factory->define(\WebSisMap\Models\Setor::class, function (Faker $faker){
 });
 $factory->define(\WebSisMap\Models\Unidade::class, function (Faker $faker){
     return[
-        'nome' => $faker->words(2),
+        'nome' => $faker->unique()->words(2, true),
         'tipo' => $faker->word,
         'localiz' => $faker->address,
-        'foto' => 'sala.jpg',
+        'foto' => 'sala.jpg'
     ];
 });
 $factory->define(\WebSisMap\Models\Material::class, function (Faker $faker){
     return[
         'nome' => $faker->word,
         'tipo' => $faker->word,
-        'descricao' => $faker->sentence(6),
+        'descricao' => $faker->sentence(4),
         'observacao' => $faker->sentence(3)
     ];
 

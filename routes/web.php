@@ -46,6 +46,10 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin\\'], 
             Route::name('relacoes.create')->get('{unidade}/relacoes', 'UnidadeRelacoesController@create');
             Route::name('relacoes.store')->post('{unidade}/relacoes', 'UnidadeRelacoesController@store');
         });
+        Route::name('unidades.thumb_asset')
+            ->get('unidades/{unidade}/thumb_asset', 'UnidadesController@thumbAsset');
+        Route::name('unidades.thumb_small_asset')
+            ->get('unidades/{unidade}/thumb_small_asset', 'UnidadesController@thumbSmallAsset');
         Route::resource('unidades', 'UnidadesController');
         Route::resource('materials', 'MaterialsController');
     });

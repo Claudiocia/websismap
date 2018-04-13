@@ -11,6 +11,6 @@ class MaterialsTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(\WebSisMap\Models\Material::class, 50)->create();
+        factory(\WebSisMap\Models\Material::class, 100)->create();
     }
 }

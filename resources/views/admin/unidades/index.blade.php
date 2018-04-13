@@ -15,10 +15,10 @@
             {!! Table::withContents($unidades->items())->striped()
                 ->callback('Detalhes', function ($field, $unidade){
                 return MediaObject::withContents([
-                'image' => '//placehold.it/64x64',
+                'image' => $unidade->thumb_small_asset,
                 'link' => '#',
                 'heading' => $unidade->nome,
-                'body' => ' Setor: '.$unidade->setor->nome.'<br/>Localização: '.$unidade->localiz
+                'body' => '<br/>Localização: '.$unidade->localiz
                 ]);
                 })
                 ->callback('Ações', function ($field, $unidade){

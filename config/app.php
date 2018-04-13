@@ -154,6 +154,7 @@ return [
         Kris\LaravelFormBuilder\FormBuilderServiceProvider::class,
         Prettus\Repository\Providers\RepositoryServiceProvider::class,
         Jrean\UserVerification\UserVerificationServiceProvider::class,
+        \Folklore\Image\ImageServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -224,6 +225,7 @@ return [
         'MediaObject' => Bootstrapper\Facades\MediaObject::class,
         'Navigation' => Bootstrapper\Facades\Navigation::class,
         'Tabbable' => Bootstrapper\Facades\Tabbable::class,
+        'Imagem' => \Folklore\Image\Facades\Image::class,
 
     ],
 
