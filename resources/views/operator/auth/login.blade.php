@@ -1,14 +1,14 @@
-@extends('layouts.admin')
+@extends('layouts.operator')
 
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Login Administrador</div>
+                <div class="card-header">Login Operador</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('admin.login') }}">
+                    <form method="POST" action="{{ route('operator.loginoper') }}">
                         @csrf
 
                         <div class="form-group row">

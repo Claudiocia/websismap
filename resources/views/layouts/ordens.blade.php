@@ -36,11 +36,11 @@
                                 Cadastros<span class="caret"></span>
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="nav-link" href="{{ route('admin.empres.index') }}">Empresa</a>
-                                <a class="nav-link" href="{{ route('admin.predios.index') }}">Prédios</a>
-                                <a class="nav-link" href="{{ route('admin.setors.index') }}">Setores</a>
-                                <a class="nav-link" href="{{ route('admin.materials.index') }}">Materiais</a>
-                                <a class="nav-link" href="{{ route('admin.unidades.index') }}">Unidades</a>
+                                <a class="nav-link" href="#">Empresa</a>
+                                <a class="nav-link" href="#">Prédios</a>
+                                <a class="nav-link" href="#">Setores</a>
+                                <a class="nav-link" href="#">Materiais</a>
+                                <a class="nav-link" href="#">Unidades</a>
 
                             </div>
                         </li>
@@ -62,17 +62,17 @@
 
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
 
-                                    <a class="dropdown-item" href="{{ route('home') }}">Inicio</a>
-                                    <a class="dropdown-item" href="{{ route('admin.users.index') }}">Lista de Usuários</a>
-                                    <a class="dropdown-item" href="{{ route('admin.users.create') }}">Novo Usuário</a>
+                                    <a class="dropdown-item" href="#">Inicio</a>
+                                    <a class="dropdown-item" href="#">Lista de Usuários</a>
+                                    <a class="dropdown-item" href="#">Novo Usuário</a>
 
-                                    <a class="dropdown-item" href="{{ route('admin.logout') }}"
+                                    <a class="dropdown-item" href="{{ route('ordens.logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                         Logout
                                     </a>
 
-                                    <form id="logout-form" action="{{ route('admin.logout') }}" method="POST" style="display: none;">
+                                    <form id="logout-form" action="{{ route('ordens.logout') }}" method="POST" style="display: none;">
                                         @csrf
                                     </form>
                                 </div>

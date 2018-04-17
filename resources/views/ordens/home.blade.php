@@ -1,11 +1,11 @@
-@extends('layouts.admin')
+@extends('layouts.ordens')
 
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Dashboard</div>
+                <div class="card-header">Página inicial</div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -14,7 +14,7 @@
                         </div>
                     @endif
 
-                    Você está logado como Administrador!
+                    Area de acesso para geração de pedidos de serviços
                 </div>
             </div>
         </div>

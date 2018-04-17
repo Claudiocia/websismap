@@ -21,6 +21,7 @@ class CreateUnidadesTable extends Migration
             $table->string('tipo');
             $table->string('localiz')->nullable();
             $table->string('foto')->nullable();
+            $table->boolean('ativo')->default(1);
             $table->integer('setor_id')->unsigned()->nullable();
             $table->foreign('setor_id')->references('id')->on('setors');
             $table->timestamps();

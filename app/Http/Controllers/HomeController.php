@@ -21,4 +21,14 @@ class HomeController extends Controller
     {
         return view('admin.home');
     }
+
+    public function operador()
+    {
+        return view('operator.home');
+    }
+
+    public function cliente()
+    {
+        return view('ordens.home');
+    }
 }

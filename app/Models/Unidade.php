@@ -4,6 +4,7 @@ namespace WebSisMap\Models;
 
 use Bootstrapper\Interfaces\TableInterface;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Prettus\Repository\Contracts\Transformable;
 use Prettus\Repository\Traits\TransformableTrait;
 use WebSisMap\Media\UnidadePaths;
@@ -17,6 +18,7 @@ class Unidade extends Model implements Transformable, TableInterface
 {
     use TransformableTrait;
     use UnidadePaths;
+    use SoftDeletes;
 
     /**
      * The attributes that are mass assignable.

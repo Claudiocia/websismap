@@ -26,6 +26,8 @@ Route::get('email-verification/error', 'EmailVerificationController@getVerificat
 Route::get('email-verification/check/{token}', 'EmailVerificationController@getVerification')->name('email-verification.check');
 
 Route::get('admin/home', 'HomeController@index')->name('home');
+Route::get('operator/home', 'HomeController@operador')->name('home');
+Route::get('ordens/home', 'HomeController@cliente')->name('home');
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin\\'], function (){
     Route::name('login')->get('login', 'Auth\LoginController@showLoginForm');
@@ -54,4 +56,28 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin\\'], 
         Route::resource('materials', 'MaterialsController');
     });
 });
+
+Route::group(['prefix' => 'operator', 'as' => 'operator.', 'namespace' => 'Operator\\'], function (){
+    Route::name('loginoper')->get('login', 'Auth\LoginOperController@showLoginForm');
+    Route::post('login', 'Auth\LoginOperController@login');
+
+    Route::group(['middleware' => ['isVerified', 'can:operador']], function (){
+        Route::name('logout')->post('logout', 'Auth\LoginOperController@logout');
+
+        //aqui entram todas as rotas para o operador
+    });
+});
+
+Route::group(['prefix' => 'ordens', 'as' => 'ordens.', 'namespace' => 'Cliente\\'], function (){
+    Route::name('logincli')->get('login', 'Auth\LoginClienteController@showLoginForm');
+    Route::post('login', 'Auth\LoginClienteController@login');
+
+    Route::group(['middleware' => ['isVerified', 'can:cliente']], function (){
+        Route::name('logout')->post('logout', 'Auth\LoginClienteController@logout');
+
+        //aqui entram todas as rotas para o cliente
+    });
+
+});
+
 

@@ -30,5 +30,13 @@ class AuthServiceProvider extends ServiceProvider
             return $user->role == User::ROLE_ADMIN;
         });
 
+        \Gate::define('operador', function ($user){
+            return $user->role == User::ROLE_OPERADOR;
+        });
+
+        \Gate::define('cliente', function ($user){
+            return $user->role == User::ROLE_CLIENTE;
+        });
+
     }
 }

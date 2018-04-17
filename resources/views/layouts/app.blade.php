@@ -36,7 +36,9 @@
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
                         @guest
-                            <li><a class="nav-link" href="{{ route('admin.login') }}">Login</a></li>
+                            <li><a class="nav-link" href="{{ route('ordens.logincli') }}">Cliente</a></li>
+                            <li><a class="nav-link" href="{{ route('operator.loginoper') }}">Operador</a></li>
+                            <li><a class="nav-link" href="{{ route('admin.login') }}">Admin</a></li>
                         @else
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
