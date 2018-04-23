@@ -7,6 +7,7 @@ use function GuzzleHttp\Psr7\_caseless_remove;
 use Illuminate\Database\Eloquent\Model;
 use Prettus\Repository\Contracts\Transformable;
 use Prettus\Repository\Traits\TransformableTrait;
+use WebSisMap\Media\OsPaths;
 
 /**
  * Class OrdemServ.
@@ -16,6 +17,7 @@ use Prettus\Repository\Traits\TransformableTrait;
 class OrdemServ extends Model implements Transformable, TableInterface
 {
     use TransformableTrait;
+    use OsPaths;
 
     /**
      * The attributes that are mass assignable.
@@ -24,7 +26,7 @@ class OrdemServ extends Model implements Transformable, TableInterface
      */
     protected $fillable =
         [
-            'solicit_id', 'unid_id', 'data', 'hora', 'descri'
+            'solicit_id', 'unid_id', 'data', 'hora', 'descri', 'priori',
 
         ];
 
@@ -58,12 +60,12 @@ class OrdemServ extends Model implements Transformable, TableInterface
             case 'Unidade':
                 return $this->unidade->nome;
             case 'Solicitante':
-                return $this->user->nome;
+                return $this->user->name;
             case 'Atendente':
-                if (!isset($this->atend->nome)){
+                if (!isset($this->atend->name)){
                     return 'Não Designado';
                 }else{
-                    return $this->atend->nome;
+                    return $this->atend->name;
                 }
             case 'Status':
                 switch ($this->status){
@@ -77,6 +79,8 @@ class OrdemServ extends Model implements Transformable, TableInterface
                         return 'Pendente';
                     case 4:
                         return 'Concluído';
+                    case 5:
+                        return 'Cancelada';
                 }
             case 'Prioridade':
                 if ($this->priori == 0){
@@ -88,7 +92,7 @@ class OrdemServ extends Model implements Transformable, TableInterface
 
     public function atend()
     {
-        return $this->belongsTo(User::where('role', '=', '2'), 'atend_id', 'id', 'users');
+        return $this->belongsTo(User::class, 'atend_id', 'id', 'users');
     }
 
     /**
@@ -96,15 +100,21 @@ class OrdemServ extends Model implements Transformable, TableInterface
      */
     public function user()
     {
-        return $this->belongsTo(User::where('role', '=', '3'), 'solicit_id', 'id', 'users');
+        return $this->belongsTo(User::class, 'solicit_id', 'id', 'users');
     }
 
     public function unidade()
     {
-        return $this->belongsTo(Unidade::class);
+        return $this->belongsTo(Unidade::class, 'unid_id', 'id', 'unidades');
     }
 
+    public function scopeUnidadeuser($query, $idUser)
+    {
+        return $query->where('solicit_id', $idUser);
+    }
 
-
-
+    public function scopeUnidadelist($query, $idUnidade)
+    {
+        return $query->where('unid_id', $idUnidade);
+    }
 }

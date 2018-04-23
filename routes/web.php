@@ -57,6 +57,26 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin\\'], 
     });
 });
 
+Route::group(['prefix' => 'ordens', 'as' => 'ordens.', 'namespace' => 'Cliente\\'], function (){
+    Route::name('logincli')->get('login', 'Auth\LoginClienteController@showLoginForm');
+    Route::post('login', 'Auth\LoginClienteController@login');
+
+    Route::group(['middleware' => ['isVerified', 'can:cliente']], function (){
+        Route::name('logout')->post('logout', 'Auth\LoginClienteController@logout');
+
+        //rotas de clientes
+
+        Route::resource('ordens', 'OrdemServsController');
+        Route::name('unidadelist')->get('index', 'OrdemServsController@unidade');
+
+        Route::get('pdfos/{orden}', 'OrdemServsController@imprimirPdf')->name('pdfos');
+
+
+
+    });
+
+});
+
 Route::group(['prefix' => 'operator', 'as' => 'operator.', 'namespace' => 'Operator\\'], function (){
     Route::name('loginoper')->get('login', 'Auth\LoginOperController@showLoginForm');
     Route::post('login', 'Auth\LoginOperController@login');
@@ -67,17 +87,4 @@ Route::group(['prefix' => 'operator', 'as' => 'operator.', 'namespace' => 'Opera
         //aqui entram todas as rotas para o operador
     });
 });
-
-Route::group(['prefix' => 'ordens', 'as' => 'ordens.', 'namespace' => 'Cliente\\'], function (){
-    Route::name('logincli')->get('login', 'Auth\LoginClienteController@showLoginForm');
-    Route::post('login', 'Auth\LoginClienteController@login');
-
-    Route::group(['middleware' => ['isVerified', 'can:cliente']], function (){
-        Route::name('logout')->post('logout', 'Auth\LoginClienteController@logout');
-
-        //aqui entram todas as rotas para o cliente
-    });
-
-});
-
 

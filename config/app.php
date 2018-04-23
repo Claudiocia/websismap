@@ -155,6 +155,7 @@ return [
         Prettus\Repository\Providers\RepositoryServiceProvider::class,
         Jrean\UserVerification\UserVerificationServiceProvider::class,
         \Folklore\Image\ImageServiceProvider::class,
+        \Barryvdh\DomPDF\ServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -226,6 +227,7 @@ return [
         'Navigation' => Bootstrapper\Facades\Navigation::class,
         'Tabbable' => Bootstrapper\Facades\Tabbable::class,
         'Imagem' => \Folklore\Image\Facades\Image::class,
+        'PDF' => Barryvdh\DomPDF\Facade::class,
 
     ],
 

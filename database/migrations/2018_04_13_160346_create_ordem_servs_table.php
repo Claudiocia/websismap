@@ -24,7 +24,7 @@ class CreateOrdemServsTable extends Migration
             $table->string('data');
             $table->string('hora');
             $table->text('descri');
-            $table->boolean('priori')->default(0);
+            $table->smallInteger('priori');
             $table->string('foto1')->nullable();
             $table->string('foto2')->nullable();
             $table->string('foto3')->nullable();

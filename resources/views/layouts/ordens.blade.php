@@ -33,11 +33,11 @@
                             @else
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Cadastros<span class="caret"></span>
+                                Consultas<span class="caret"></span>
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="nav-link" href="#">Empresa</a>
-                                <a class="nav-link" href="#">Prédios</a>
+                                <a class="nav-link" href="{{ route('ordens.ordens.create') }}">Novo Pedido de OS</a>
+                                <a class="nav-link" href="{{ route('ordens.ordens.index') }}">Listar Ordens</a>
                                 <a class="nav-link" href="#">Setores</a>
                                 <a class="nav-link" href="#">Materiais</a>
                                 <a class="nav-link" href="#">Unidades</a>

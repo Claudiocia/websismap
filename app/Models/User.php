@@ -95,4 +95,9 @@ class User extends Authenticatable implements TableInterface
     {
         return $this->belongsTo(Setor::class, 'setor_id', 'id', 'setors');
     }
+
+    public function unidades()
+    {
+        return $this->belongsToMany(Unidade::class);
+    }
 }

@@ -15,6 +15,7 @@ use WebSisMap\Validators\OrdemServValidator;
  */
 class OrdemServRepositoryEloquent extends BaseRepository implements OrdemServRepository
 {
+
     /**
      * Specify Model class name
      *
@@ -23,6 +24,16 @@ class OrdemServRepositoryEloquent extends BaseRepository implements OrdemServRep
     public function model()
     {
         return OrdemServ::class;
+    }
+
+    public function whereUser($id)
+    {
+        return OrdemServ::unidadeuser($id);
+    }
+
+    public function whereUnidade($id)
+    {
+        return OrdemServ::unidadelist($id);
     }
 
     
